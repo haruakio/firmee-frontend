@@ -1,24 +1,61 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
+import { blue } from "@material-ui/core/colors";
+import Header from './components/Header';
+import Body from './components/Body';
 
+const customTheme = createMuiTheme({
+    mixins: {
+        toolbar: {
+            minHeight: 42
+        }
+    },
+    palette: {
+        // primary: blue
+        primary: {
+            main: blue[50]
+        }
+    },
+    props: {
+        MuiCheckbox: {
+            color: "primary"
+        },
+        MuiList: {
+            dense: true
+        },
+        MuiRadio: {
+            color: "primary"
+        },
+        MuiSwitch: {
+            color: "primary"
+        },
+        MuiTable: {
+            size: "small"
+        },
+        MuiTextField: {
+            variant: "outlined"
+            // InputProps: {
+            //     style: {
+            //         height: 38
+            //     }
+            // }
+        }
+    },
+    typography: {
+        // fontFamily: "Indie Flower",
+        fontSize: 12,
+        button: {
+            textTransform: "none"
+        }
+    }
+});
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MuiThemeProvider theme={customTheme}>
+      <Header></Header>
+      <Body />
+      </MuiThemeProvider>
     </div>
   );
 }
